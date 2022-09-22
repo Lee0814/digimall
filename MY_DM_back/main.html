@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">获取token</button>
+    <button id="btn2">验证token</button>
+    <h2 id="show"></h2>
+  </body>
+  <script>
+    const btn = document.getElementById("btn");
+    const btn2 = document.getElementById("btn2");
+    const content = document.getElementById("show");
+    btn.onclick = function () {
+      console.log("1");
+      //   axios.default.baseURL = '127.0.0.1:8000'
+      axios
+        .post("http://127.0.0.1:8000/login", {
+          name: "123",
+          password: "123",
+        })
+
+        .then((res) => {
+          console.log("成功");
+          const token = res.data.token;
+          console.log(token);
+          content.innerText = res.data;
+          window.localStorage.setItem("token", JSON.stringify(token));
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("失败");
+        });
+    };
+    btn2.onclick = function () {
+      console.log("开始验证");
+      axios
+        .get("http://127.0.0.1:8000/", {
+          headers: {
+            Authorization: JSON.parse(window.localStorage.getItem("token")),
+          },
+        })
+        .then((res) => {
+          console.log("token验证成功");
+        })
+        .catch((err) => {
+          console.log("验证失败");
+        });
+    };
+  </script>
+</html>
