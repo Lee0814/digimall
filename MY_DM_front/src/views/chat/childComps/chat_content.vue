@@ -13,7 +13,7 @@
           <p class="time">上午 {{ hours }}:{{ minutes }}</p>
         </li>
         <li class="text-left">
-          <span>宇哥，在干嘛呢，看看你的!宇哥，111在干嘛呢，看看你的!</span>
+          <span>宇哥，在干嘛呢</span>
         </li>
 
         <li
