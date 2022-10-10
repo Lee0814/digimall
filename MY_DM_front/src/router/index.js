@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import store from '../store'
 import localCache from '@/common/cache'
 
 const Home = () => import('../views/home/home')
@@ -11,20 +11,26 @@ const Profile = () => import('../views/profile/profile')
 const Login = () => import('../views/login/login')
 const Setting = () => import('../views/profile/setting/setting')
 const Collection = () => import('../views/profile/collection/collection')
-const Message = () => import('../views/profile/message/message')
+const Address = () => import('../views/profile/address/address')
 const Order = () => import('../views/profile/order/order')
 const Sreach = () => import('../views/sreach/sreach')
 const Chat = () => import('../views/chat/chat')
 const Chatcontent = () => import('../views/chat/childComps/chat_content')
-const lyTest = () => import('@/views/chat/ly_test.vue')
+const Purchase = () => import('@/views/purchase/purchase.vue')
+const Orderdetail = () =>
+  import('@/views/profile/order/order_detail/order_detaile.vue')
 // 1.安装插件
 Vue.use(VueRouter)
 
 // 2.创建router
 const routes = [
   {
-    path: '/test',
-    component: lyTest
+    path: '/orderdetail',
+    component: Orderdetail
+  },
+  {
+    path: '/purchase',
+    component: Purchase
   },
   {
     path: '',
@@ -46,7 +52,7 @@ const routes = [
     path: '/profile',
     component: Profile,
     beforeEnter: (to, from, next) => {
-      if (localCache.getCache('token')) {
+      if (localCache.getCache('token') && localCache.getCache('user_id')) {
         next()
       } else {
         next('/login')
@@ -70,8 +76,8 @@ const routes = [
     component: Collection
   },
   {
-    path: '/message',
-    component: Message
+    path: '/address',
+    component: Address
   },
   {
     path: '/order',

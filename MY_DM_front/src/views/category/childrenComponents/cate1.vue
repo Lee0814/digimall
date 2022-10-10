@@ -52,7 +52,8 @@ export default {
   font-size: 16px;
   text-align: center;
   line-height: 40px;
-  height: 40px;
+  /* height: 40px; */
+  height: 41px;
   /* border: 1px solid rgb(202, 202, 202); */
   border-radius: 0 10px 10px 0;
   background-color: #eee;

@@ -1,23 +1,28 @@
+const connection = require("../../mysql/createpool");
 const jwt = require("jsonwebtoken");
 
 const key = "blasslee";
-//颁发token
-function getToken(req, res, next) {
 
+const sql = "SELECT id FROM users WHERE username=?";
+//颁发token
+async function getToken(req, res, next) {
   console.log("----------------");
-  console.log(req.body.username);
+
+  const result = await connection.query(sql, [req.body.username]);
+
   const user = {
     username: req.body.username,
-    id: 1,
+    id: result[0][0].id,
   };
+  console.log(user);
+
   const token = jwt.sign(user, key, {
     expiresIn: 10 * 1000 * 60,
   });
-  //   res.header("Access-Control-Allow-Credentials", "true");
   res.cookie("token", token, {
     maxAge: 1000 * 1000,
   });
-
-  res.send({ success: true, token, userInfo: { id: 1, username: req.body } });
+  req.body.token = token;
+  next();
 }
 module.exports = getToken;

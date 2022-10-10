@@ -38,7 +38,8 @@ export default {
 .swiper1 {
   /* height: 300px;
     overflow: hidden; */
-  width: 95%;
+  /* width: 95%; */
+  width: 93%;
   margin: 0 auto;
   background-color: #eee;
   border-radius: 10px;

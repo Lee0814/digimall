@@ -1,10 +1,10 @@
 <template>
   <div class="bottom">
     <div class="left">
-      <img src="~assets/img/detail/3.1店铺.svg" alt="" class="one" />
-      <span>店铺</span>
-      <img src="~assets/img/detail/客服.svg" alt="" class="two" />
-      <span>客服</span>
+      <img src="~assets/img/detail/客服.svg" alt="" class="one" />
+      <span @click="gochatcontent">客服</span>
+      <img src="~assets/img/detail/收藏.svg" alt="" class="two" />
+      <span @click="add_collection_list">收藏</span>
     </div>
     <div class="right" @click="add_cart_list">加入购物车</div>
   </div>
@@ -15,6 +15,12 @@ export default {
   methods: {
     add_cart_list() {
       this.$emit('add_cart_list')
+    },
+    add_collection_list() {
+      this.$emit('add_collection_list')
+    },
+    gochatcontent() {
+      this.$emit('gochatcontent')
     }
   }
 }
@@ -34,13 +40,15 @@ export default {
 .bottom {
   display: flex;
   flex: 1;
-  position: fixed;
+  /* position: fixed;
   left: 0px;
   right: 0px;
   bottom: 49px;
-  width: 95%;
+  width: 95%; */
+  width: 93%;
   height: 49px;
   margin: 0 auto;
+  margin-top: -58px;
   border-radius: 10px;
   background-color: #fff;
 }
@@ -64,5 +72,6 @@ export default {
   text-align: center;
   font-size: 15px;
   color: #eee;
+  z-index: 1;
 }
 </style>

@@ -21,7 +21,8 @@ export default {
 <style scoped>
 .chat-item {
   height: 70px;
-  width: 93%;
+  /* width: 93%; */
+  width: 100%;
   margin: 0 auto;
   margin-top: 10px;
   background-color: #fff;

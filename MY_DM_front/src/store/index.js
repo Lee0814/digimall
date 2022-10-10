@@ -1,13 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import localCache from '@/common/cache'
+import { get_profile } from '@/network/lyTest/profile'
+
 Vue.use(Vuex)
 const state = {
   user_id: '',
   UserName: '登录/注册',
-  UserAvatar: '游客',
+  UserAvatar: 'USER',
   total_price: 0,
   is_checked: true,
-  number: 0
+  number: 0,
+  cartList: [],
+  addressList: [],
+  orderList: [],
+  defaultAddress: {}
 }
 const mutations = {
   user_id_change(state, user_id) {
@@ -33,10 +40,46 @@ const mutations = {
   },
   zero(state, new1) {
     state.total_price = new1
+  },
+  //点击首页获取个人信息
+  getProfile(state, result) {
+    console.log('执行')
+    console.log(result)
+    state.UserName = result[0].username
+    state.user_id = localCache.getCache('user_id')
+  },
+  //购物车信息存储
+  cartChange(state, res) {
+    console.log('更新vuex')
+    state.cartList = res
+  },
+  //地址信息
+  addressChange(state, res) {
+    state.addressList = res
+  },
+  defaultAddressChange(state, item) {
+    state.defaultAddress = item
+  },
+  orderChange(state, res) {
+    state.orderList = res
+  },
+  currentGoodChange(state, res) {
+    state.currentGood = res
   }
 }
+const actions = {
+  async AsyncGetProfile({ commit }) {
+    const user_id = localCache.getCache('user_id')
+    console.log(user_id)
+    const result = await get_profile(user_id)
+
+    commit('getProfile', result)
+  }
+}
+
 const store = new Vuex.Store({
   state,
-  mutations
+  mutations,
+  actions
 })
 export default store

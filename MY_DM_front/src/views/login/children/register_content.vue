@@ -11,20 +11,23 @@
     </div>
     <div class="password">
       <div class="password_img"></div>
-      <input
-        id="password"
-        type="password"
-        v-model="user_password"
-        placeholder="请输入密码"
-      />
+      <form action="">
+        <input
+          id="password"
+          type="password"
+          v-model="user_password"
+          placeholder="请输入密码"
+        />
+      </form>
     </div>
     <div class="login_button" @click="reguser">注册</div>
-    <div class="flxed" v-show="this.if_data">{{ this.message }}</div>
+    <div class="flxed" v-show="this.if_data">注册成功</div>
+    <!-- <div class="flxed" v-show="this.if_data">{{ this.message }}</div> -->
   </div>
 </template>
 
 <script>
-import { reguser } from 'network/reguser'
+import { reguser } from 'network/lyTest/reguser'
 
 export default {
   data() {
@@ -54,11 +57,15 @@ export default {
 .register_content {
   width: 304px;
   height: 281px;
-  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  background-color: #91c5f0;
+  /* background-color: #eee; */
   border-radius: 21px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
   position: absolute;
-  top: 11%;
+  /* top: 11%; */
+  /* top: -5%; */
+  top: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,12 +161,23 @@ export default {
   width: 80px;
   height: 30px;
   background-color: gray;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #eee;
   text-align: center;
   line-height: 30px;
   position: absolute;
-  top: 100%;
+  top: 50%;
   z-index: 1000;
+}
+
+input {
+  /* width: 70%;
+  height: 40px; */
+  font-size: 15px;
+  text-indent: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: medium;
+  /* background-color: #eeeeee; */
 }
 </style>

@@ -2,14 +2,14 @@
   <navbar>
     <div slot="left">
       <img
-        src="~assets/img/common/back.svg"
+        src="~assets/img/profile/返回.svg"
         alt=""
         class="back"
         @click="back"
       />
     </div>
     <div slot="center" class="titles">
-      <div
+      <!-- <div
         v-for="(item, index) in titles"
         :key="item.id"
         class="titles_item"
@@ -17,7 +17,8 @@
         @click="item_click(index)"
       >
         {{ item }}
-      </div>
+      </div> -->
+      商品详情
     </div>
   </navbar>
 </template>
@@ -28,16 +29,16 @@ export default {
   components: {
     navbar
   },
-  data() {
-    return {
-      titles: ['商品', '参数', '评论', '推荐'],
-      is_active_data: 0
-    }
-  },
+  // data() {
+  //   return {
+  //     titles: ['商品', '参数', '评论', '推荐'],
+  //     is_active_data: 0
+  //   }
+  // },
   methods: {
-    item_click(index) {
-      this.is_active_data = index
-    },
+    // item_click(index) {
+    //   this.is_active_data = index
+    // },
     back() {
       this.$router.back()
     }
@@ -47,16 +48,20 @@ export default {
 
 <style>
 .titles {
-  display: flex;
+  /* display: flex; */
+  color: #fff;
 }
-.titles_item {
+/* .titles_item {
   flex: 1;
-}
-.is_active {
-  /* color: var(--color-high-text) */
+} */
+/* .is_active {
+  color: var(--color-high-text)
   color: white;
-}
+} */
 .back {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  width: 25px;
+  height: 25px;
+  margin-top: 9px;
 }
 </style>

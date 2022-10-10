@@ -1,13 +1,13 @@
 <template>
   <div class="bottom-bar">
-    <div class="check-content">
+    <div class="check-content" @click="total_checked_change">
       <!-- <check-button @click="total_checked_change" class="check-button"/> -->
-      <span @click="total_checked_change">全选</span>
+      全选
     </div>
 
     <div class="total">
       <!-- 合计:{{totalPrice}} -->
-      总价：{{ this.$store.state.total_price }}.00
+      总价：{{ total_price }}.00
     </div>
 
     <div class="calculate" @click="if_data_false">
@@ -27,6 +27,12 @@ export default {
       is_data: false
     }
   },
+  props: {
+    total_price: {
+      type: Number,
+      default: 0
+    }
+  },
   methods: {
     total_checked_change() {
       // console.log(this.$store.state.is_checked);
@@ -41,7 +47,7 @@ export default {
       // console.log(1);
       let that = this
       that.is_data = true
-
+      this.$emit('order')
       // this.if_data=false
       setTimeout(function () {
         that.is_data = false
@@ -73,29 +79,36 @@ export default {
   text-align: center;
 }
 .bottom-bar {
+  width: 100%;
   height: 40px;
   background-color: #eee;
   position: relative;
+  font-size: 15px;
 
+  position: fixed;
   /* bottom: 40px; */
 }
 .check-content {
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
   position: absolute;
-  top: 10px;
-  left: 10px;
+  /* top: 10px; */
+  left: 3.5%;
+  height: 40px;
+  line-height: 40px;
 }
-.check-button {
+/* .check-button {
   width: 20px;
   height: 20px;
   margin-right: 5px;
-}
+} */
 .total {
   position: absolute;
-  left: 25%;
-  top: 10px;
+  left: 30%;
+  /* top: 10px; */
   color: #0086f6;
+  height: 40px;
+  line-height: 40px;
 }
 .calculate {
   position: absolute;
@@ -107,6 +120,6 @@ export default {
   padding-left: 5px;
   text-align: center;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 </style>

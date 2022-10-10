@@ -1,6 +1,6 @@
-import { request_dm } from './request_dm'
+import { request_dm } from './index'
 
-export function user_login(username, password) {
+export function lyuser_login(username, password) {
   return request_dm({
     url: '/login',
     method: 'post',

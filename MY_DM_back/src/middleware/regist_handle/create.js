@@ -11,7 +11,7 @@ const create = function (req, res, next) {
 
   const result = connection.execute(createUser, [username, newPassword]);
   console.log("创建成功");
-  res.send({ success: true, result });
+  res.send({ success: true, result,message:'注册成功' });
 };
 
 module.exports = create;

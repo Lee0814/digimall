@@ -33,7 +33,6 @@ export default {
 .goods_list_item {
   padding-bottom: 40px;
   position: relative;
-
   width: 48%;
 }
 .goods_list_item img {

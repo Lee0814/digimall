@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login_title">
-      <div class="back" @click="goprofile"></div>
+      <div class="back" @click="back"></div>
       <div @click=";(register = !register), (login = !login)">
         <div
           class="register"
@@ -18,7 +18,7 @@
 
     <div :is="loginContent"></div>
 
-    <div class="third_party">
+    <!-- <div class="third_party">
       <div class="line_one"></div>
       <div id="third_party">以第三方登录</div>
       <div class="line_two"></div>
@@ -30,7 +30,7 @@
       <div class="micro_blog"></div>
     </div>
 
-    <div class="phone_number">本机号码一键登录</div>
+    <div class="phone_number">本机号码一键登录</div> -->
   </div>
 </template>
 
@@ -52,9 +52,12 @@ export default {
     }
   },
   methods: {
-    goprofile() {
-      this.$router.push('/profile')
+    back() {
+      this.$router.back()
     },
+    // goprofile() {
+    //   this.$router.push('/profile')
+    // },
     tabChange(tabContent) {
       this.loginContent = tabContent
     }
@@ -69,7 +72,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
 .login_title {
@@ -85,18 +88,18 @@ export default {
 .back {
   width: 30px;
   height: 30px;
-  background-image: url(assets/img/login/返回.svg);
+  background-image: url(assets/img/profile/返回.svg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .register {
-  color: black;
+  color: #fff;
   font-size: 20px;
   font-weight: 1000;
 }
 
-.third_party {
+/* .third_party {
   width: 230px;
   height: 15px;
   position: absolute;
@@ -173,5 +176,5 @@ export default {
   line-height: 63px;
   position: absolute;
   top: 80%;
-}
+} */
 </style>

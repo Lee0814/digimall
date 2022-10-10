@@ -4,7 +4,11 @@
       <navbar class="navbar">
         <div slot="left" class="nav_left">DM</div>
         <div slot="center" class="nav_center">
-          <input type="text" v-model="search_in_cate" />
+          <input
+            type="text"
+            v-model="search_in_cate"
+            placeholder="请输入搜索关键字"
+          />
         </div>
         <div slot="right" class="nav_right" @click="show()">搜索</div>
       </navbar>
@@ -83,7 +87,7 @@ export default {
   overflow-y: hidden;
   box-shadow: 10px;
   background-color: #eee;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   /* border-radius: 10px; */
 }
 .cate2 {
@@ -93,15 +97,22 @@ export default {
   box-shadow: 10px;
   top: 44px;
   bottom: 49px;
-  left: 30%;
+  /* left: 30%; */
+  right: 0;
   width: 70%;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .navbar {
+  background-color: var(--color-tint);
   color: rgb(27, 48, 66);
-  font-size: 18px;
+  /* font-size: 18px; */
   /* margin-bottom: 50px; */
+  position: fixed;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  right: 0;
 }
 .nav_left {
   /* background-color: rgb(56, 131, 181); */
@@ -113,10 +124,6 @@ export default {
 }
 .nav_center input {
   font-size: 14px;
-  width: 100%;
-  border: 1px solid rgb(220, 233, 245);
-  padding: 4% 0px;
-  border-radius: 10px;
 
   /* -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -136,5 +143,14 @@ export default {
 .nav_right {
   text-align: center;
   color: #fff;
+}
+input {
+  width: 100%;
+  height: 30px;
+  /* font-size: 15px; */
+  text-indent: 10px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
 }
 </style>

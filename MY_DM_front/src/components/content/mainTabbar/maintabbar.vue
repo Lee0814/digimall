@@ -19,10 +19,10 @@
       <div slot="item-text">分类</div>
     </tabbar_item>
     <tabbar_item path="/chat" active_color="#0086f6">
-      <img slot="item-icon" src="~assets/img/tabbar/profile.svg" alt="" />
+      <img slot="item-icon" src="~assets/img/tabbar/message.svg" alt="" />
       <img
         slot="item-icon-active"
-        src="~assets/img/tabbar/profile_active.svg"
+        src="~assets/img/tabbar/message_active.svg"
         alt=""
       />
       <div slot="item-text">消息</div>

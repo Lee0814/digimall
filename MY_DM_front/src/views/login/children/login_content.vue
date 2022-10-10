@@ -26,12 +26,12 @@
       <div class="forget_password">忘记密码？</div>
     </div>
     <div class="login_button" @click="user_login">登录</div>
-    <div class="flxed" v-show="this.if_data">登录{{ this.message }}</div>
+    <div class="flxed" v-show="this.if_data">登录成功</div>
+    <!-- <div class="flxed" v-show="this.if_data">登录{{ this.message }}</div> -->
   </div>
 </template>
 
 <script>
-import { user_login } from 'network/login'
 import { lyuser_login } from 'network/lyTest/login'
 import localCache from '@/common/cache'
 export default {
@@ -49,32 +49,24 @@ export default {
     user_login() {
       //存入localstorage
       if (this.isRemenber) {
-        localCache.setCache('name', this.user_name)
+        localCache.setCache('username', this.user_name)
         localCache.setCache('password', this.user_password)
       } else {
         localCache.clearCache()
       }
-      //跳转入个人页面
-      this.$router.push({
-        path: '/profile/'
-      })
+
       lyuser_login(this.user_name, this.user_password).then((res) => {
         console.log(res)
         const token = res.token
         localCache.setCache('token', token)
-        this.$store.state.UserName = res.userInfo.name
+        localCache.setCache('user_id', res.userInfo.id)
+        this.$store.state.UserName = res.userInfo.username
+        this.$store.state.user_id = res.userInfo.id
         this.$router.push({
           path: '/profile/'
         })
       })
-      user_login(this.user_name, this.user_password).then((res) => {
-        this.message = res.message.mes
-        this.$store.commit('user_id_change', res.message.id)
-        if (res.message.mes == '成功') {
-          this.$store.state.UserName = this.user_name
-          this.$store.state.UserAvatar = '头像'
-        }
-      })
+
       let that = this
       that.if_data = true
       setTimeout(function () {
@@ -84,8 +76,8 @@ export default {
   },
   created() {
     // 判断 localCache.getCache("name")
-    if (this.$cookies.isKey('name')) {
-      this.user_name = localCache.getCache('name')
+    if (localCache.getCache('username')) {
+      this.user_name = localCache.getCache('username')
       this.user_password = localCache.getCache('password')
       // this.user_name = localCache.getCache("name");
       // this.user_password = localCache.getCache("password");
@@ -99,11 +91,15 @@ export default {
 .login_content {
   width: 304px;
   height: 281px;
-  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  background-color: #91c5f0;
+  /* background-color: #eee; */
   border-radius: 21px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
   position: absolute;
-  top: 11%;
+  /* top: 11%; */
+  /* top: -5%; */
+  top: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,6 +119,17 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   float: left;
+}
+
+input {
+  /* width: 70%;
+  height: 40px; */
+  font-size: 15px;
+  text-indent: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: medium;
+  /* background-color: #eeeeee; */
 }
 
 #user {
@@ -199,12 +206,12 @@ export default {
   width: 80px;
   height: 30px;
   background-color: gray;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #eee;
   text-align: center;
   line-height: 30px;
   position: absolute;
-  top: 100%;
+  top: 50%;
   z-index: 1000;
 }
 </style>

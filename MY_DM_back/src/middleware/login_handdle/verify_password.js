@@ -13,7 +13,7 @@ SELECT username  FROM users WHERE password=?
 `;
 
 const varify = async function (req, res, next) {
-  console.log(req.body);
+  console.log("前端传来的数据:", req.body);
   const { username, password } = req.body;
   // 密码加密
   const newPassword = md5password(password);

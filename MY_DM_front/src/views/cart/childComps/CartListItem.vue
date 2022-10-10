@@ -16,6 +16,11 @@
                   :isChecked="this.$store.state.is_checked"
                   @click="checked_change()"
                 />
+                <!-- <input
+                  type="checkbox"
+                  @click="select(index)"
+                  :cheched="itemInfo.choose"
+                /> -->
               </div>
               <div class="item-img">
                 <img
@@ -49,6 +54,9 @@ export default {
   name: 'CartListItem',
   components: {
     CheckButton
+  },
+  data() {
+    return {}
   },
   props: {
     itemInfo: {
@@ -144,6 +152,10 @@ export default {
       this.$store.commit('total_price_min', price)
       // console.log(this.itemInfo.id);
       remove_cart(this.itemInfo.id)
+    },
+    select(index) {
+      console.log(index)
+      this.$emit('changchoose', index)
     }
   },
   data() {
@@ -224,7 +236,7 @@ export default {
   overflow: hidden;
   background-color: #fff;
   width: 93%;
-  margin: 10px auto;
+  margin: 0px auto;
   border-radius: 10px;
   margin-top: 10px;
 

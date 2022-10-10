@@ -1,5 +1,9 @@
 <template>
   <div class="main">
+    <navbar class="home_nav">
+      <div class="title_img" slot="left" @click="gochat"></div>
+      <div slot="center">客服</div>
+    </navbar>
     <scroll
       class="scroll"
       @scroll="contentscroll"
@@ -10,10 +14,10 @@
       <ul id="message">
         <!-- <li><p class="time">下午 6:30</p></li> -->
         <li>
-          <p class="time">上午 {{ hours }}:{{ minutes }}</p>
+          <p class="time">{{ hours }}:{{ minutes }}</p>
         </li>
         <li class="text-left">
-          <span>宇哥，在干嘛呢</span>
+          <span>在干嘛</span>
         </li>
 
         <li
@@ -41,6 +45,7 @@
 
 <script>
 import ws from '@/network/websocket'
+import navbar from 'components/common/navbar/navbar'
 //better_scroll
 import scroll from '@/components/common/scroll/scroll.vue'
 export default {
@@ -59,9 +64,13 @@ export default {
     }
   },
   components: {
-    scroll
+    scroll,
+    navbar
   },
   methods: {
+    gochat() {
+      this.$router.push('/chat')
+    },
     foo() {
       // 接收数据
       this.ws = ws
@@ -142,16 +151,39 @@ export default {
 </script>
 
 <style scoped>
+.home_nav {
+  width: 100%;
+  height: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: var(--color-tint);
+  color: #fff;
+}
+.title_img {
+  width: 25px;
+  height: 25px;
+  background-image: url(assets/img/profile/返回.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 9px;
+  left: 3.5%;
+}
 .scroll {
-  height: calc(100% - 110px);
+  margin-top: 44px;
+  height: calc(100% - 154px);
   overflow: hidden;
 }
 .main {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  height: 574px;
   position: relative;
   background: #ededed;
-  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2); */
 }
 .main ul {
   padding: 20px 60px 0 60px;
@@ -233,12 +265,13 @@ export default {
 /* 聊天界面 */
 /* 输入框 */
 .foot {
+  color: black;
   width: 100%;
-  box-sizing: border-box;
   height: 60px;
   position: absolute;
-  bottom: 49px;
-  padding: 0 7px;
+  /* bottom: 49px; */
+  bottom: 0%;
+  padding: 0 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -246,14 +279,15 @@ export default {
 }
 .foot input {
   width: 70%;
-  height: 40px;
-  border: none;
+  /* height: 40px; */
+  height: 35px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
   text-indent: 10px;
   outline: medium;
   font-size: 18px;
 }
 .foot span {
-  font-size: 18px;
   width: 30px;
   height: 30px;
 }
@@ -265,7 +299,8 @@ export default {
 }
 .expression {
   width: 50px !important;
-  line-height: 200%;
+  line-height: 30px;
+  text-align: center;
 }
 /* .plus {
   background: url('http://ceaser.fun/img/dm_c.png') no-repeat center center;

@@ -19,7 +19,27 @@ export function get_goods_detail(iid) {
   })
 }
 
-export function add_cart_list(image_url, title, desc, price, count, user_id) {
+export function add_collection_list(image_url, title, price, user_id) {
+  return request_dm({
+    url: 'add_collection_list',
+    params: {
+      image_url,
+      title,
+      price,
+      user_id
+    }
+  })
+}
+
+export function add_cart_list(
+  image_url,
+  title,
+  desc,
+  price,
+  count,
+  user_id,
+  good_id
+) {
   return request_dm({
     url: 'add_cart_list',
     params: {
@@ -28,7 +48,8 @@ export function add_cart_list(image_url, title, desc, price, count, user_id) {
       desc,
       price,
       count,
-      user_id
+      user_id,
+      good_id
     }
   })
 }
